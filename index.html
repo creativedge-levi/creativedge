@@ -1532,7 +1532,7 @@
             <div class="section-content reduced">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-7 text-left contact-left">
-                        <form class="send_message_form message form" method="post" action="#" id="message_form">
+                        <form class="send_message_form message form" method="post" action="#" id="message_form" name="contact_form">
                             <div class="form-group name">
                                 <label for="mes-name">Name</label>
                                 <input id="mes-name" name="name" type="text" placeholder=""
@@ -1619,6 +1619,70 @@
 <script src="scrolloverflow.min.js"></script>
 <script src="all.js"></script>
 <script src="particles.min.js"></script>
+<script>
+    $(function()
+    {
+        function after_form_submitted(data)
+        {
+            if(data.result == 'success')
+            {
+                $('form#message_form').hide();
+                $('#success_message').show();
+                $('#error_message').hide();
+            }
+            else
+            {
+                $('#error_message').append('<ul></ul>');
+    
+                jQuery.each(data.errors,function(key,val)
+                {
+                    $('#error_message ul').append('<li>'+key+':'+val+'</li>');
+                });
+                $('#success_message').hide();
+                $('#error_message').show();
+    
+                //reverse the response on the button
+                $('button[type="button"]', $form).each(function()
+                {
+                    $btn = $(this);
+                    label = $btn.prop('orig_label');
+                    if(label)
+                    {
+                        $btn.prop('type','submit' );
+                        $btn.text(label);
+                        $btn.prop('orig_label','');
+                    }
+                });
+    
+            }//else
+        }
+    
+        $('#message_form').submit(function(e)
+          {
+            e.preventDefault();
+    
+            $form = $(this);
+            //show some response on the button
+            $('button[type="submit"]', $form).each(function()
+            {
+                $btn = $(this);
+                $btn.prop('type','button' );
+                $btn.prop('orig_label',$btn.text());
+                $btn.text('Sending ...');
+            });
+    
+    
+                        $.ajax({
+                    type: "POST",
+                    url: 'handler.php',
+                    data: $form.serialize(),
+                    success: after_form_submitted,
+                    dataType: 'json'
+                });
+    
+          });
+    });
+    </script>
 
 <!-- Main Script files -->
 <!-- <script src="../js/custom.js"></script> -->
