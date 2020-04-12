@@ -1532,7 +1532,7 @@
             <div class="section-content reduced">
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-7 text-left contact-left">
-                        <form class="send_message_form message form" method="post" action="#" id="message_form" name="contact_form">
+                        <!-- <form class="send_message_form message form" method="post" action="#" id="message_form" name="contact_form">
                             <div class="form-group name">
                                 <label for="mes-name">Name</label>
                                 <input id="mes-name" name="name" type="text" placeholder=""
@@ -1561,7 +1561,37 @@
                                     <span class="arrow-icon"></span>
                                 </button>
                             </div>
-                        </form>
+                        </form> -->
+
+                    <!-- Begin form from http://reusableforms.com/d/o5/html5-contact-form-send-email -->
+                        <form id="reused_form">
+                            <div class="form-group">
+                                <label><i class="fa fa-user" aria-hidden="true"></i> Name</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="Enter Email">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fa fa-comment" aria-hidden="true"></i> Message</label>
+                                <textarea rows="3" name="message" class="form-control" placeholder="Type Your Message"></textarea>
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="btn btn-raised btn-block btn-danger">Post →</button>
+                            </div>
+                       </form>
+                       <div id="error_message" style="width:100%; height:100%; display:none; ">
+                       <h4>Error</h4>
+                       Sorry there was an error sending your form.
+                       </div>
+                       <div id="success_message" style="width:100%; height:100%; display:none; ">
+                       <h2>Success! Your Message was Sent Successfully.</h2>
+                       </div>
+                    <!-- End form from http://reusableforms.com/d/o5/html5-contact-form-send-email -->
+
                     </div>
                     <div class="col-12 col-md-12 col-lg-5 text-left contact-right">
                         <!-- <img src="../img/phone-icon.png" alt=""> -->
